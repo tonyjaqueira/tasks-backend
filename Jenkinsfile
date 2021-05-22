@@ -57,6 +57,12 @@ pipeline {
         always {
             junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml, api-test/target/surefire-reports/*.xml'
         }
+        unseccessful {
+            emailext attachLog: true, body: 'Verifique o log abaixo', subject: 'Build do projeto falhou', to: 'tonybellote+jenkins@gmail.com'
+        }
+        fixed {
+            emailext attachLog: true, body: 'Verifique o log abaixo', subject: 'Build do projeto Concluida com secesso', to: 'tonybellote+jenkins@gmail.com'
+        }
     }
 }
 
